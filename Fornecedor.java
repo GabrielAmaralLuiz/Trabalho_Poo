@@ -10,7 +10,7 @@ public class Fornecedor extends Pessoa {
 	}
 	public Fornecedor(int codigo, String nome, String cpf, String telefone, String email, String estado, String cidade,
 			String rua, String cep, String cnpj, String inscricaoEstadual) {
-		super(codigo, nome, cpf, telefone, email, estado, cidade, rua, cep, inscricaoEstadual);
+		super(codigo, nome, cpf, telefone, email, estado, cidade, rua, cep, inscricaoEstadual, inscricaoEstadual);
 		this.cnpj = cnpj;
 		this.inscricaoEstadual = inscricaoEstadual;
 		// TODO Auto-generated constructor stub

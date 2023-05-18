@@ -10,6 +10,8 @@ public class Principal {
 		ArrayList<Fornecedor> fornecedores = new ArrayList<>();
 		ArrayList<Funcionario> funcionarios = new ArrayList<>();
 		ArrayList<Produto> produtos = new ArrayList<>();
+		ArrayList<Cliente> cliente = new ArrayList<>();
+		FicharioCliente ficharioCliente = new FicharioCliente(cliente);
 		FicharioFonecedor fichario = new FicharioFonecedor(fornecedores);		
 		FicharioFuncionario ficharioFuncionario = new FicharioFuncionario(funcionarios);
 		FicharioProduto ficharioProduto = new FicharioProduto(produtos);
@@ -67,14 +69,19 @@ public class Principal {
 					opCliente = sc.nextInt();
 					switch (opCliente) {
 					case 1:
+						ficharioCliente.incluir();
 						break;
 					case 2:
+						ficharioCliente.excluir();
 						break;
 					case 3:
+						ficharioCliente.alterar();
 						break;
 					case 4:
+						ficharioCliente.consultar();
 						break;
 					case 5:
+						ficharioCliente.relatorio();
 						break;
 					}
 				} while (opCliente != 6);

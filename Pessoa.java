@@ -4,6 +4,7 @@ public abstract class Pessoa {
 	private int codigo;
 	private String nome;
 	private String cpf;
+	private String cnpj;
 	private String telefone;
 	private String email;
 	private String estado;
@@ -11,13 +12,13 @@ public abstract class Pessoa {
 	private String rua;
 	private String cep;
 	private String bairro;
-
-	public Pessoa(int codigo, String nome, String cpf, String telefone, String email, String estado, String cidade,
-			String rua, String cep, String bairro) {
+	public Pessoa(int codigo, String nome, String cpf, String cnpj, String telefone, String email, String estado,
+			String cidade, String rua, String cep, String bairro) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.cpf = cpf;
+		this.cnpj = cnpj;
 		this.telefone = telefone;
 		this.email = email;
 		this.estado = estado;
@@ -25,7 +26,6 @@ public abstract class Pessoa {
 		this.rua = rua;
 		this.cep = cep;
 		this.bairro = bairro;
-		
 	}
 	public Pessoa() {
 		super();
@@ -47,6 +47,12 @@ public abstract class Pessoa {
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	public String getCnpj() {
+		return cnpj;
+	}
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 	public String getTelefone() {
 		return telefone;
@@ -90,4 +96,6 @@ public abstract class Pessoa {
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+	
+
 }
