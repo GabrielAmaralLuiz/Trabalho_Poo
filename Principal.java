@@ -7,36 +7,29 @@ public class Principal {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Fornecedor> fornecedores = new ArrayList<>();
 		ArrayList<Funcionario> funcionarios = new ArrayList<>();
 		ArrayList<Produto> produtos = new ArrayList<>();
 		ArrayList<Cliente> cliente = new ArrayList<>();
 		FicharioCliente ficharioCliente = new FicharioCliente(cliente);
-		FicharioFonecedor fichario = new FicharioFonecedor(fornecedores);		
 		FicharioFuncionario ficharioFuncionario = new FicharioFuncionario(funcionarios);
 		FicharioProduto ficharioProduto = new FicharioProduto(produtos);
-		for(int i=0;i<5;i++) {
-			Fornecedor forne = new Fornecedor(i, "fornecedor "+i, "cpf "+i, "rua "+i,
-					"telefone"+i, "eu "+i, "Estado "+i, "cidade "+i, " cep "+i, String.valueOf(i), "inscriçao estadual "+i);
-			fornecedores.add(forne);
-		}
+		
 		for(int a = 0;a<5;a++) {
 			Funcionario func = new Funcionario(a, "funcionario "+a, String.valueOf(a), "telefone "+a,
 					"email "+a, "estado "+a, "cidade "+a, "rua "+a, "cep "+a, "cargo "+a, a);
 			funcionarios.add(func);
 		}
 		
-		int opLoja = 0, opFuncionario = 0, opCliente = 0, opFornecedores = 0, opProduto = 0, opCompra = 0;
+		int opMenu = 0, opFuncionario = 0, opCliente = 0, opProduto = 0, opCompra = 0;
 		do {
 			System.out.println("-----=====[F A R M  C I A]=====--------");
 			System.out.println("--==[ 1 - CADASTRO DE FUNCIONARIOS]==--");
 			System.out.println("--==[ 2 - CADASTRO DE CLIENTES    ]==--");
-			System.out.println("--==[ 3 - CADASTRO DE FORNECEDORES]==--");
-			System.out.println("--==[ 4 - CADASTRO DE PRODUTOS    ]==--");
-			System.out.println("--==[ 5 - COMPRAS                 ]==--");
-			System.out.println("--==[ 6 - SAIR                    ]==--");
-			opLoja = sc.nextInt();
-			switch (opLoja) {
+			System.out.println("--==[ 3 - CADASTRO DE PRODUTOS    ]==--");
+			System.out.println("--==[ 4 - COMPRAS                 ]==--");
+			System.out.println("--==[ 5 - SAIR                    ]==--");
+			opMenu = sc.nextInt();
+			switch (opMenu) {
 			case 1:
 				do {
 					System.out.println("-----====[F U N C I O N A R I O]===----");
@@ -86,31 +79,8 @@ public class Principal {
 					}
 				} while (opCliente != 6);
 				break;
+			
 			case 3:
-				do {
-					System.out.println("-==[F O R N E C E D O R E S]===--");
-					mostraMenu();
-					opFornecedores = sc.nextInt();
-					switch (opFornecedores) {
-					case 1:
-						fichario.incluir();
-						break;
-					case 2:
-						fichario.excluir();
-						break;
-					case 3:
-						fichario.alterar();
-						break;
-					case 4:
-						fichario.consultar();
-						break;
-					case 5:
-						fichario.relatorio();
-						break;
-					}
-				} while (opFornecedores != 6);
-				break;
-			case 4:
 				do {
 					System.out.println("-==[P R O D U T O S]===--");
 					mostraMenu();
@@ -134,7 +104,7 @@ public class Principal {
 					}
 				} while (opProduto != 6);
 				break;
-			case 5:
+			case 4:
 				do {
 					System.out.println("-===[C O M P R A S]===--");
 					mostraMenu();
@@ -154,7 +124,7 @@ public class Principal {
 				} while (opCompra != 6);
 				break;
 			}
-		} while (opLoja != 6);
+		} while (opMenu != 5);
 		sc.close();
 	}
 	private static void mostraMenu() {

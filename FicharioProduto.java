@@ -34,7 +34,7 @@ public class FicharioProduto {
 				System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :");
 				prod.setIdEmpresa(sc.nextLine());
 				System.out.println(": NUMERO DE REGISTRO         :");
-				prod.setNueroRegistro(sc.nextLine());
+				prod.setNumeroRegistro(sc.nextLine());
 				System.out.println(": INFORMAÇÃO FARMACEUTICA    :");
 				prod.setInformacaoFarmaceutica(sc.nextLine());
 				System.out.println(": TELEFONE DO LABORARORIO    :");
@@ -120,7 +120,7 @@ public class FicharioProduto {
 					System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :");
 					prod.setIdEmpresa(sc.nextLine());
 					System.out.println(": NUMERO DE REGISTRO         :");
-					prod.setNueroRegistro(sc.nextLine());
+					prod.setNumeroRegistro(sc.nextLine());
 					System.out.println(": INFORMAÇÃO FARMACEUTICA    :");
 					prod.setInformacaoFarmaceutica(sc.nextLine());
 					System.out.println(": TELEFONE DO LABORARORIO    :");
@@ -204,7 +204,7 @@ public class FicharioProduto {
 			System.out.println(": CODIGO                     :"+prod.getCodigo());
 			System.out.println(": NOME                       :"+prod.getNome());
 			System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :"+prod.getIdEmpresa());
-			System.out.println(": NUMERO DE REGISTRO         :"+prod.getNueroRegistro());
+			System.out.println(": NUMERO DE REGISTRO         :"+prod.getNumeroRegistro());
 			System.out.println(": INFORMAÇÃO FARMACEUTICA    :"+prod.getInformacaoFarmaceutica());
 			System.out.println(": TELEFONE DO LABORARORIO    :"+prod.getTelefoneFarmaceuticaRespnsavel());
 			System.out.println(": TELEFONE DO SAG            :"+prod.getTelefoneSag());
@@ -220,7 +220,7 @@ public class FicharioProduto {
 		System.out.println(": CODIGO                     :"+prod.getCodigo());
 		System.out.println(": NOME                       :"+prod.getNome());
 		System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :"+prod.getIdEmpresa());
-		System.out.println(": NUMERO DE REGISTRO         :"+prod.getNueroRegistro());
+		System.out.println(": NUMERO DE REGISTRO         :"+prod.getNumeroRegistro());
 		System.out.println(": INFORMAÇÃO FARMACEUTICA    :"+prod.getInformacaoFarmaceutica());
 		System.out.println(": TELEFONE DO LABORARORIO    :"+prod.getTelefoneFarmaceuticaRespnsavel());
 		System.out.println(": TELEFONE DO SAG            :"+prod.getTelefoneSag());

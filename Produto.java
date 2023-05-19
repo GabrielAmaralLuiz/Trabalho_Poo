@@ -4,7 +4,7 @@ public class Produto {
 	private int codigo;
 	private String nome;
 	private String idEmpresa;
-	private String nueroRegistro;
+	private String numeroRegistro;
 	private String informacaoFarmaceutica;
 	private String telefoneFarmaceuticaRespnsavel;
 	private String telefoneSag;
@@ -13,14 +13,14 @@ public class Produto {
 	private String medidaMedicamento;
 	private String descricaoMedicamento;
 	private float preco;
-	public Produto(int codigo, String nome, String idEmpresa, String nueroRegistro, String informacaoFarmaceutica,
+	public Produto(int codigo, String nome, String idEmpresa, String numeroRegistro, String informacaoFarmaceutica,
 			String telefoneFarmaceuticaRespnsavel, String telefoneSag, String idLacreSeguranca, String tarja,
 			String medidaMedicamento, String descricaoMedicamento, float preco) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.idEmpresa = idEmpresa;
-		this.nueroRegistro = nueroRegistro;
+		this.numeroRegistro = numeroRegistro;
 		this.informacaoFarmaceutica = informacaoFarmaceutica;
 		this.telefoneFarmaceuticaRespnsavel = telefoneFarmaceuticaRespnsavel;
 		this.telefoneSag = telefoneSag;
@@ -51,11 +51,11 @@ public class Produto {
 	public void setIdEmpresa(String idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
-	public String getNueroRegistro() {
-		return nueroRegistro;
+	public String getNumeroRegistro() {
+		return numeroRegistro;
 	}
-	public void setNueroRegistro(String nueroRegistro) {
-		this.nueroRegistro = nueroRegistro;
+	public void setNumeroRegistro(String numeroRegistro) {
+		this.numeroRegistro = numeroRegistro;
 	}
 	public String getInformacaoFarmaceutica() {
 		return informacaoFarmaceutica;

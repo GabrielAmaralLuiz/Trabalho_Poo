@@ -5,15 +5,13 @@ public class Compra {
 	private int codigo;
 	private Cliente clientes[];
 	private Produto produtos[];
-	private Loja lojas[];
 	private float preco;
 	private float desconto;
-	public Compra(int codigo, Cliente[] clientes, Produto[] produtos, Loja[] lojas, float preco, float desconto) {
+	public Compra(int codigo, Cliente[] clientes, Produto[] produtos, float preco, float desconto) {
 		super();
 		this.codigo = codigo;
 		this.clientes = clientes;
 		this.produtos = produtos;
-		this.lojas = lojas;
 		this.preco = preco;
 		this.desconto = desconto;
 	}
@@ -37,12 +35,6 @@ public class Compra {
 	}
 	public void setProdutos(Produto[] produtos) {
 		this.produtos = produtos;
-	}
-	public Loja[] getLojas() {
-		return lojas;
-	}
-	public void setLojas(Loja[] lojas) {
-		this.lojas = lojas;
 	}
 	public float getPreco() {
 		return preco;
