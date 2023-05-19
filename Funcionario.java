@@ -30,4 +30,11 @@ public class Funcionario extends Pessoa {
 	
 	
 	
+	void mostrarDados(){
+		System.out.println("Nome: "+getNome());
+		System.out.println("Cargo: "+getCargo());
+	
+	}
+	
+	
 }

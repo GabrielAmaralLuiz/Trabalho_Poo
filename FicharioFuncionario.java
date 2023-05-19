@@ -37,6 +37,7 @@ public class FicharioFuncionario {
 				funcionario.setCargo(sc.nextLine());
 				System.out.println("SALARIO     :");
 				funcionario.setSalario(sc.nextFloat());
+				sc.nextLine();
 				System.out.println("RUA         :");
 				funcionario.setRua(sc.nextLine());
 				System.out.println("BAIRRO      :");
@@ -62,6 +63,7 @@ public class FicharioFuncionario {
 			return;
 		} else
 			imprime();
+		sc.nextLine();
 		String resp;
 		System.out.println("Esolha o cpf do funcionario que deseja excluir: ");
 		resp = sc.nextLine();

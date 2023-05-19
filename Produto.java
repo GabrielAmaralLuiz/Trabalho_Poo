@@ -105,5 +105,9 @@ public class Produto {
 	public void setPreco(float preco) {
 		this.preco = preco;
 	}
+	public void mostrarDados() {
+System.out.println("Nome: "+nome);
+System.out.println("Preço: "+preco);
+	}
 	
 }

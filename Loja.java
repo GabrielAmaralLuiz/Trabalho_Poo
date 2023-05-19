@@ -1,53 +1,81 @@
 package principal;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Loja {
-	private Funcionario funcionarios[];
-	private Fornecedor fornecedores [];
-	private Produto produtos[];
-	private int codigo;
+int codigo;
+String nome;
+ArrayList<Funcionario> funcionarios;
+ArrayList<Produto> produtos;
+public Loja(int codigo, ArrayList<Funcionario> funcionarios, ArrayList<Produto> produtos,String nome) {
+	this.codigo = codigo;
+	this.funcionarios = funcionarios;
+	this.produtos = produtos;
+	this.nome = nome;
+}
+
+public Loja() {
+
+}
 	
-	public Loja(Funcionario[] funcionarios, Fornecedor[] fornecedores, Produto[] produtos, int codigo) {
-		super();
-		this.funcionarios = funcionarios;
-		this.fornecedores = fornecedores;
-		this.produtos = produtos;
-		this.codigo = codigo;
+void mostrarFuncionarios(){
+	Iterator<Funcionario> itr = funcionarios.iterator();
+	while (itr.hasNext()) {
+		Funcionario funcionario =  itr.next();
+		System.out.println("----Funcionarios----");
+		funcionario.mostrarDados();
 	}
+}
+void mostrarProdutos(){
+	Iterator<Produto> itr = produtos.iterator();
+while (itr.hasNext()) {
+	Produto produto = (Produto) itr.next();
+	System.out.println("----Produtos----");
+	produto.mostrarDados();
+}
+	
+}
 
-	public Loja() {
-		super();
-	}
+public int getCodigo() {
+	return codigo;
+}
 
-	public Funcionario[] getFuncionarios() {
-		return funcionarios;
-	}
+public void setCodigo(int codigo) {
+	this.codigo = codigo;
+}
 
-	public void setFuncionarios(Funcionario[] funcionarios) {
-		this.funcionarios = funcionarios;
-	}
+public String getNome() {
+	return nome;
+}
 
-	public Fornecedor[] getFornecedores() {
-		return fornecedores;
-	}
+public void setNome(String nome) {
+	this.nome = nome;
+}
 
-	public void setFornecedores(Fornecedor[] fornecedores) {
-		this.fornecedores = fornecedores;
-	}
+public ArrayList<Funcionario> getFuncionarios() {
+	return funcionarios;
+}
 
-	public Produto[] getProdutos() {
-		return produtos;
-	}
+public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
+	this.funcionarios = funcionarios;
+}
 
-	public void setProdutos(Produto[] produtos) {
-		this.produtos = produtos;
-	}
+public ArrayList<Produto> getProdutos() {
+	return produtos;
+}
 
-	public int getCodigo() {
-		return codigo;
-	}
+public void setProdutos(ArrayList<Produto> produtos) {
+	this.produtos = produtos;
+}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
+public void mostrarDados() {
+System.out.println("Nome: "+nome);
+System.out.println("Codigo: "+codigo);
+System.out.println();
+
+}
+
+
 	
 }

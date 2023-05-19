@@ -1,6 +1,7 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Principal {
@@ -10,52 +11,88 @@ public class Principal {
 		ArrayList<Funcionario> funcionarios = new ArrayList<>();
 		ArrayList<Produto> produtos = new ArrayList<>();
 		ArrayList<Cliente> cliente = new ArrayList<>();
+		ArrayList<Loja> lojas = new ArrayList<>();
 		FicharioCliente ficharioCliente = new FicharioCliente(cliente);
-		FicharioFuncionario ficharioFuncionario = new FicharioFuncionario(funcionarios);
 		FicharioProduto ficharioProduto = new FicharioProduto(produtos);
-		
-		for(int a = 0;a<5;a++) {
-			Funcionario func = new Funcionario(a, "funcionario "+a, String.valueOf(a), "telefone "+a,
-					"email "+a, "estado "+a, "cidade "+a, "rua "+a, "cep "+a, "cargo "+a, a);
+		FicharioLoja ficharioLoja;
+		for (int a = 0; a < 5; a++) {
+			Funcionario func = new Funcionario(a, "funcionario " + a, String.valueOf(a), "telefone " + a, "email " + a,
+					"estado " + a, "cidade " + a, "rua " + a, "cep " + a, "cargo " + a, a);
 			funcionarios.add(func);
 		}
-		
-		int opMenu = 0, opFuncionario = 0, opCliente = 0, opProduto = 0, opCompra = 0;
+		FicharioFuncionario ficharioFuncionario;
+
+		for (int i = 0; i < 5; i++) {
+			Loja l = new Loja(i, funcionarios, produtos, "" + i);
+			lojas.add(l);
+		}
+
+		int opMenu = 0, opFuncionario = 0, opLoja = 0, opCliente = 0, opProduto = 0, opCompra = 0;
 		do {
 			System.out.println("-----=====[F A R M  C I A]=====--------");
-			System.out.println("--==[ 1 - CADASTRO DE FUNCIONARIOS]==--");
-			System.out.println("--==[ 2 - CADASTRO DE CLIENTES    ]==--");
-			System.out.println("--==[ 3 - CADASTRO DE PRODUTOS    ]==--");
-			System.out.println("--==[ 4 - COMPRAS                 ]==--");
-			System.out.println("--==[ 5 - SAIR                    ]==--");
+			System.out.println("--==[ 1 - CADASTRO DE LOJAS]==--");
+			System.out.println("--==[ 2 - CADASTRO DE FUNCIONARIOS]==--");
+			System.out.println("--==[ 3 - CADASTRO DE CLIENTES    ]==--");
+			System.out.println("--==[ 4 - CADASTRO DE PRODUTOS    ]==--");
+			System.out.println("--==[ 5 - COMPRAS                 ]==--");
+			System.out.println("--==[ 6 - SAIR                    ]==--");
 			opMenu = sc.nextInt();
 			switch (opMenu) {
 			case 1:
+				Loja loja = new Loja();
+				ficharioLoja = new FicharioLoja();
 				do {
-					System.out.println("-----====[F U N C I O N A R I O]===----");
+					System.out.println("-----====[LOJA]===----");
 					mostraMenu();
-					
-					opFuncionario = sc.nextInt();
-					switch (opFuncionario) {
+					opLoja = sc.nextInt();
+					switch (opLoja) {
 					case 1:
-						ficharioFuncionario.incluir();
+						ficharioLoja.incluir();
 						break;
 					case 2:
-						ficharioFuncionario.excluir();
+						ficharioLoja.excluir();
 						break;
 					case 3:
-						ficharioFuncionario.alterar();
+						int iloja = escolherLoja(sc, lojas);
+						ficharioLoja.setLoja(lojas.get(iloja));
+						ficharioLoja.alterar();
 						break;
 					case 4:
-						ficharioFuncionario.consultar();
+						ficharioLoja.consultar();
 						break;
 					case 5:
-						ficharioFuncionario.relatorio();
+						ficharioLoja.relatorio();
 						break;
 					}
 				} while (opFuncionario != 6);
 				break;
 			case 2:
+				do {
+
+					System.out.println("-----====[F U N C I O N A R I O]===----");
+					mostraMenu();
+
+					opFuncionario = sc.nextInt();
+					switch (opFuncionario) {
+//					case 1:
+//						ficharioFuncionario.incluir();
+//						break;
+//					case 2:
+//						ficharioFuncionario.excluir();
+//						break;
+//					case 3:
+//						ficharioFuncionario.alterar();
+//						break;
+//					case 4:
+//						ficharioFuncionario.consultar();
+//						break;
+//					case 5:
+//						ficharioFuncionario.relatorio();
+//						break;
+					}
+				} while (opFuncionario != 6);
+				break;
+			case 3:
 				do {
 					System.out.println("---====[C L I E N T E S]===----");
 					mostraMenu();
@@ -79,8 +116,8 @@ public class Principal {
 					}
 				} while (opCliente != 6);
 				break;
-			
-			case 3:
+
+			case 4:
 				do {
 					System.out.println("-==[P R O D U T O S]===--");
 					mostraMenu();
@@ -96,7 +133,8 @@ public class Principal {
 						ficharioProduto.alterar();
 						break;
 					case 4:
-						ficharioProduto.consultar();;
+						ficharioProduto.consultar();
+						;
 						break;
 					case 5:
 						ficharioProduto.relatorio();
@@ -104,7 +142,7 @@ public class Principal {
 					}
 				} while (opProduto != 6);
 				break;
-			case 4:
+			case 5:
 				do {
 					System.out.println("-===[C O M P R A S]===--");
 					mostraMenu();
@@ -123,10 +161,12 @@ public class Principal {
 					}
 				} while (opCompra != 6);
 				break;
+
 			}
-		} while (opMenu != 5);
+		} while (opMenu != 6);
 		sc.close();
 	}
+
 	private static void mostraMenu() {
 		System.out.println("--==[ 1 - INCLUIR    ]==--");
 		System.out.println("--==[ 2 - EXCLUIR    ]==--");
@@ -135,5 +175,21 @@ public class Principal {
 		System.out.println("--==[ 5 - RELATORIO  ]==--");
 		System.out.println("--==[ 6 - VOLTAR     ]==--");
 	}
+
+	private static int escolherLoja(Scanner sc, ArrayList<Loja> lojas) {
+		int op = 0;
+		do {
+			System.out.println("Escolha a loja: ");
+			Iterator<Loja> itr = lojas.iterator();
+			for (int i = 0; i < lojas.size(); i++) {
+				System.out.println("loja: " + "" + (i + 1));
+				lojas.get(i).mostrarDados();
+			}
+			op = sc.nextInt();
+
+		} while (op < 0 || op > lojas.size());
+	return op;
+	}
+	
 
 }
