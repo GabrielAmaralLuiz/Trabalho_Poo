@@ -14,7 +14,7 @@ public class Principal {
 		ArrayList<Loja> lojas = new ArrayList<>();
 		FicharioCliente ficharioCliente = new FicharioCliente(cliente);
 		FicharioProduto ficharioProduto = new FicharioProduto(produtos);
-		FicharioLoja ficharioLoja;
+		FicharioLoja ficharioLoja = new FicharioLoja();
 		for (int a = 0; a < 5; a++) {
 			Funcionario func = new Funcionario(a, "funcionario " + a, String.valueOf(a), "telefone " + a, "email " + a,
 					"estado " + a, "cidade " + a, "rua " + a, "cep " + a, "cargo " + a, a);
@@ -53,8 +53,6 @@ public class Principal {
 						ficharioLoja.excluir();
 						break;
 					case 3:
-						int iloja = escolherLoja(sc, lojas);
-						ficharioLoja.setLoja(lojas.get(iloja));
 						ficharioLoja.alterar();
 						break;
 					case 4:
