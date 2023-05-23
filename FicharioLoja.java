@@ -86,7 +86,7 @@ public class FicharioLoja {
 				int indRemove = 0;
 				do {
 					if (lojas.isEmpty()) {
-						System.out.println("lista vazia");
+						System.out.println("lista de lojas vazia");
 						break;
 					} else {
 						mostraLojas();
