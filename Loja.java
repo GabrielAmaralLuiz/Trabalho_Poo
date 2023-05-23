@@ -1,81 +1,78 @@
-package principal;
+package objetos;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Loja {
-int codigo;
-String nome;
-ArrayList<Funcionario> funcionarios;
-ArrayList<Produto> produtos;
-public Loja(int codigo, ArrayList<Funcionario> funcionarios, ArrayList<Produto> produtos,String nome) {
-	this.codigo = codigo;
-	this.funcionarios = funcionarios;
-	this.produtos = produtos;
-	this.nome = nome;
-}
+	private int codigo;
+	private String nome;
 
-public Loja() {
+	ArrayList<Produto> produtos;
 
-}
-	
-void mostrarFuncionarios(){
-	Iterator<Funcionario> itr = funcionarios.iterator();
-	while (itr.hasNext()) {
-		Funcionario funcionario =  itr.next();
-		System.out.println("----Funcionarios----");
-		funcionario.mostrarDados();
+	public Loja(int codigo, ArrayList<Produto> produtos, String nome) {
+		this.codigo = codigo;
+
+		this.produtos = produtos;
+		this.nome = nome;
 	}
-}
-void mostrarProdutos(){
-	Iterator<Produto> itr = produtos.iterator();
-while (itr.hasNext()) {
-	Produto produto = (Produto) itr.next();
-	System.out.println("----Produtos----");
-	produto.mostrarDados();
-}
+
+	public Loja() {
+	}
+
+	void mostrarProdutos() {
+		Iterator<Produto> itr = produtos.iterator();
+		while (itr.hasNext()) {
+			Produto produto = (Produto) itr.next();
+			System.out.println("----Produtos----");
+		}
+
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public ArrayList<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(ArrayList<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public void mostrarDados() {
+		System.out.println("Nome: " + nome);
+		System.out.println("Codigo: " + codigo);
+		System.out.println();
+
+	}
+
+	public void mostrarLojaComProdutos() {
+		mostrarDados();
+		produtos.forEach(p -> p.mostrarProduto());
+		
+	}
 	
-}
-
-public int getCodigo() {
-	return codigo;
-}
-
-public void setCodigo(int codigo) {
-	this.codigo = codigo;
-}
-
-public String getNome() {
-	return nome;
-}
-
-public void setNome(String nome) {
-	this.nome = nome;
-}
-
-public ArrayList<Funcionario> getFuncionarios() {
-	return funcionarios;
-}
-
-public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
-	this.funcionarios = funcionarios;
-}
-
-public ArrayList<Produto> getProdutos() {
-	return produtos;
-}
-
-public void setProdutos(ArrayList<Produto> produtos) {
-	this.produtos = produtos;
-}
-
-public void mostrarDados() {
-System.out.println("Nome: "+nome);
-System.out.println("Codigo: "+codigo);
-System.out.println();
-
-}
-
-
 	
+	private void imprime() {
+
+		System.out.println("--===[LOJAS]===--");
+		System.out.println(": CODIGO                     :" + codigo);
+		System.out.println(": NOME                       :" + nome);
+		System.out.println("=============");
+
+	}
+
 }

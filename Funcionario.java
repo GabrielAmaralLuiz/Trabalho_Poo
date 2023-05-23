@@ -1,4 +1,4 @@
-package principal;
+package objetos;
 
 public class Funcionario extends Pessoa {
 	
@@ -35,6 +35,5 @@ public class Funcionario extends Pessoa {
 		System.out.println("Cargo: "+getCargo());
 	
 	}
-	
-	
+
 }

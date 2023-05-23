@@ -1,4 +1,4 @@
-package principal;
+package objetos;
 
 public abstract class Pessoa {
 	private int codigo;

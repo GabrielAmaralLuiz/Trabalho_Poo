@@ -1,4 +1,4 @@
-package principal;
+package objetos;
 
 public class Produto {
 	private int codigo;
@@ -13,6 +13,7 @@ public class Produto {
 	private String medidaMedicamento;
 	private String descricaoMedicamento;
 	private float preco;
+	
 	public Produto(int codigo, String nome, String idEmpresa, String numeroRegistro, String informacaoFarmaceutica,
 			String telefoneFarmaceuticaRespnsavel, String telefoneSag, String idLacreSeguranca, String tarja,
 			String medidaMedicamento, String descricaoMedicamento, float preco) {
@@ -100,14 +101,17 @@ public class Produto {
 		this.descricaoMedicamento = descricaoMedicamento;
 	}
 	public float getPreco() {
-		return preco;
+		return preco;	
 	}
 	public void setPreco(float preco) {
 		this.preco = preco;
 	}
-	public void mostrarDados() {
-System.out.println("Nome: "+nome);
-System.out.println("Preço: "+preco);
+
+	public void mostrarProduto() {
+		System.out.println("Nome do produto: "+nome);
+		System.out.println("Numero do registro do produto: "+numeroRegistro);
+		System.out.println("Codigo do produto: "+codigo);
+		
 	}
 	
 }
