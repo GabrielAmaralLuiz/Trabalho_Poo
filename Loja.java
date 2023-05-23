@@ -8,12 +8,14 @@ public class Loja {
 	private String nome;
 
 	ArrayList<Produto> produtos;
+	ArrayList<Funcionario> funcionarios;
 
-	public Loja(int codigo, ArrayList<Produto> produtos, String nome) {
+	public Loja(int codigo, ArrayList<Produto> produtos, String nome, ArrayList<Funcionario> funcionarios) {
 		this.codigo = codigo;
-
+		this.funcionarios = funcionarios;
 		this.produtos = produtos;
 		this.nome = nome;
+
 	}
 
 	public Loja() {
@@ -52,6 +54,14 @@ public class Loja {
 		this.produtos = produtos;
 	}
 
+	public ArrayList<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
+	}
+
 	public void mostrarDados() {
 		System.out.println("Nome: " + nome);
 		System.out.println("Codigo: " + codigo);
@@ -62,10 +72,14 @@ public class Loja {
 	public void mostrarLojaComProdutos() {
 		mostrarDados();
 		produtos.forEach(p -> p.mostrarProduto());
-		
+
 	}
-	
-	
+	public void mostrarLojaComFuncionarios() {
+		mostrarDados();
+		funcionarios.forEach(f -> f.mostrarDados());
+
+	}
+
 	private void imprime() {
 
 		System.out.println("--===[LOJAS]===--");

@@ -29,7 +29,7 @@ public class Main {
 		FicharioFuncionario ficharioFuncionario = new FicharioFuncionario(funcionario);
 		FicharioCliente ficharioCliente = new FicharioCliente(cliente);
 		FicharioProduto ficharioProduto = new FicharioProduto(produtos);
-		FicharioLoja ficharioLoja = new FicharioLoja(produtos, lojas);
+		FicharioLoja ficharioLoja = new FicharioLoja(produtos, lojas,funcionario);
 		FicharioCompra ficharioCompra = new FicharioCompra(compra);
 		int opMenu = 0, opFuncionario = 0, opLoja = 0, opCliente = 0, opProduto = 0, opCompra = 0;
 		do {

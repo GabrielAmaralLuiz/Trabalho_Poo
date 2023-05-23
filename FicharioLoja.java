@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import objetos.Funcionario;
 import objetos.Loja;
 import objetos.Produto;
 
@@ -12,12 +13,14 @@ public class FicharioLoja {
 	private List<Loja> lojas;
 	private Scanner sc;
 	private ArrayList<Produto> produtosCadastrados;
+	private ArrayList<Funcionario> funcionarios;
 
-	public FicharioLoja(ArrayList<Produto> produtos, ArrayList<Loja> lojas) {
+	public FicharioLoja(ArrayList<Produto> produtos, ArrayList<Loja> lojas, ArrayList<Funcionario> funcionario) {
 		lojas = new ArrayList<>();
 		sc = new Scanner(System.in);
 		produtosCadastrados = produtos;
 		this.lojas = lojas;
+		this.funcionarios = funcionario;
 	}
 
 	public void incluir() {
@@ -28,8 +31,10 @@ public class FicharioLoja {
 			System.out.println("-=[ 1 - CADASTRAR LOJA     ]=-");
 			System.out.println("-=[ 2 - INCLUIR PRODUTO    ]=-");
 			System.out.println("-=[ 3 - REMOVER PRODUTO    ]=-");
-			System.out.println("-=[ 4 - RELATÓRIO      =]=-");
-			System.out.println("-=[ 5 - SAIR      =]=-");
+			System.out.println("-=[ 4 - INCLUIR FUNCIONARIO]=-");
+			System.out.println("-=[ 5 - REMOVER FUNCIONARIO]=-");
+			System.out.println("-=[ 6 - RELATÓRIO      =]=-");
+			System.out.println("-=[ 7 - SAIR      =]=-");
 			menu = sc.nextInt();
 
 			switch (menu) {
@@ -90,7 +95,7 @@ public class FicharioLoja {
 						break;
 					} else {
 						mostraLojas();
-						System.out.println("Digite a posição da loja que deseja remover um produto.");
+						System.out.println("lista de lojas vazia");
 						posicaoLojaExcluirP = sc.nextInt();
 						for (int i = 0; i < lojas.size(); i++) {
 							if (lojas.get(i).getCodigo() == posicaoLojaExcluirP) {
@@ -102,20 +107,56 @@ public class FicharioLoja {
 						if (!achouRemover)
 							System.out.println("Loja errada ou inexistente.");
 						else {
-							Loja loja = lojas.remove(indRemove);
+							Loja loja = lojas.get(posicaoLojaExcluirP);
+							removerProduto(produtosCadastrados);
 							System.out.println("produto removido.");
+							break;
 						}
 					}
 				} while (!achouRemover);
 				break;
 			case 4:
+				int codigoFunc = 0;
+				int posFunc = 0;
+				boolean achouFunc = false;
+				do {
+					if (lojas.isEmpty()) {
+						System.out.println("lista de lojas vazia");
+					} else {
+						mostraLojas();
+						System.out.println("Digite o codigo da loja que deseja adicionar um funcionario.");
+						codigoLoja = sc.nextInt();
+						for (int i = 0; i < lojas.size(); i++) {
+							if (lojas.get(i).getCodigo() == codigoFunc) {
+								achouFunc = true;
+								posFunc = i;
+								break;
+							}
+						}
+						if (achouFunc) {
+							System.out.println("Loja errada ou inexistente.");
+						}
+						else {
+							Loja loja = lojas.get(posFunc);
+							if(funcionarios.isEmpty()) {
+								System.out.println("Lista de funcionarios vazia.");
+								break;
+							}
+							escolhaFuncionario(loja);
+						}
+					}
+				} while (!achouFunc);
+				break;
+			case 5:
+				break;
+			case 6:
 				lojas.forEach(l -> l.mostrarLojaComProdutos());
 				break;
 			default:
 				break;
 			}
 
-		} while (menu != 5);
+		} while (menu != 6);
 	}
 
 	public void excluir() {
@@ -143,7 +184,7 @@ public class FicharioLoja {
 							break;
 						}
 					}
-					if (removida) {
+					if (!removida) {
 						System.out.println("Loja com código " + resp + " excluída com sucesso.");
 						return;
 					} else {
@@ -263,12 +304,32 @@ public class FicharioLoja {
 
 					if (!achou) {
 						System.out.println("Digite uma posição valida.");
-					} else
+					} else {
 						carrinhoProdutos.add(produtosCadastrados.get(posicao));
+					System.out.println("Produto cadastrado.");
+					}
 				} while (!achou && menu != 3);
 				break;
 			case 2:
-
+				boolean achouRemove = false;
+				do {
+					mostraProdutos(produtosCadastrados);
+					System.out.println("Digite o codigo do produto.");
+					coidgo = sc.nextInt();
+					for (int i = 0; i < produtosCadastrados.size(); i++) {
+						if (produtosCadastrados.get(i).getCodigo() == coidgo) {
+							achouRemove = true;
+							posicao = i;
+							break;
+						}
+					}
+					if (!achouRemove) {
+						System.out.println("digite uma posição valida");
+					} else {
+						produtosCadastrados.remove(posicao);
+						System.out.println("produto removido da loja");
+					}
+				} while (!achouRemove && menu != 3);
 				break;
 			case 3:
 				loja.setProdutos(carrinhoProdutos);
@@ -278,6 +339,49 @@ public class FicharioLoja {
 		} while ((menu != 3));
 	}
 
+	private void escolhaFuncionario(Loja loja) {
+		ArrayList<Funcionario> cadastrofuncionario = new ArrayList<>();
+		int posicao = 0;
+		int menu = 0;
+		int codigo;
+		boolean achouFuncionario = false;
+		do {
+			mostraFuncionario(cadastrofuncionario);
+
+			System.out.println("-=[ 1 - Adicionar funcionario ]=-");
+			System.out.println("-=[ 2 - Remover funcionario   ]=-");
+			System.out.println("-=[ 3 - Sair                  ]=-");
+			menu = sc.nextInt();
+			switch (menu) {
+			case 1:
+				mostraFuncionario(cadastrofuncionario);
+				System.out.println("Digite o codigo do funcionario.");
+				codigo = sc.nextInt();
+				for (int i = 0; i < funcionarios.size(); i++) {
+					if (funcionarios.get(i).getCodigo() == codigo) {
+						achouFuncionario = true;
+						posicao = i;
+						break;
+					}
+				}
+				if(!achouFuncionario) {
+					System.out.println("Digite uma posição valida.");
+				}
+				else {
+					funcionarios.add(cadastrofuncionario.get(posicao));
+					System.out.println("Funcionario Cadastrado.");
+				}
+				break;
+			case 2:
+
+				break;
+
+			default:
+				break;
+			}
+		} while (menu != 3);
+	}
+
 	private void mostraProdutos(ArrayList<Produto> produtos) {
 		for (int i = 0; i < produtos.size(); i++) {
 			System.out.println(": CODIGO                     :" + produtos.get(i).getCodigo());
@@ -285,6 +389,15 @@ public class FicharioLoja {
 			System.out.println(": PREÇO                      :" + produtos.get(i).getPreco());
 			System.out.println("=============");
 
+		}
+	}
+
+	private void mostraFuncionario(ArrayList<Funcionario> funcionarios) {
+		for (int i = 0; i < funcionarios.size(); i++) {
+			System.out.println("CODIGO      :" + funcionarios.get(i).getCodigo());
+			System.out.println("NOME        :" + funcionarios.get(i).getNome());
+			System.out.println("CPF         :" + funcionarios.get(i).getCpf());
+			System.out.println("=============");
 		}
 	}
 
