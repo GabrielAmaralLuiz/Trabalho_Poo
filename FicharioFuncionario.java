@@ -1,9 +1,13 @@
-package principal;
+package ficharios;
+
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Scanner;
+import objetos.Funcionario;
+
+
 
 public class FicharioFuncionario {
 
@@ -31,9 +35,9 @@ public class FicharioFuncionario {
 				System.out.println("--==[DIGITE OS CAMPOS A BAIXO]==--");
 				System.out.println("NOME        :");
 				funcionario.setNome(sc.nextLine());
-				System.out.println("CNPJ         :");
+				System.out.println("CPF         :");
 				funcionario.setCpf(sc.nextLine());
-				System.out.println("CARGO        :");
+				System.out.println("CARGO       :");
 				funcionario.setCargo(sc.nextLine());
 				System.out.println("SALARIO     :");
 				funcionario.setSalario(sc.nextFloat());
@@ -48,7 +52,7 @@ public class FicharioFuncionario {
 				funcionario.setEstado(sc.nextLine());
 				System.out.println("CEP         :");
 				funcionario.setCep(sc.nextLine());
-				System.out.println("TELEFONE         :");
+				System.out.println("TELEFONE    :");
 				funcionario.setTelefone(sc.nextLine());
 				funcionarios.add(funcionario);
 
@@ -233,4 +237,5 @@ public class FicharioFuncionario {
 			System.out.println("=============");
 		}
 	}
+
 }

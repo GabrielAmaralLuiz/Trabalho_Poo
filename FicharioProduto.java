@@ -1,17 +1,19 @@
-package principal;
+package ficharios;
 
-import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Iterator;
+import java.util.Scanner;
+
+import objetos.Produto;
 
 public class FicharioProduto {
 
 	private Scanner sc;
 	private ArrayList<Produto> produtos = new ArrayList<>();
 
-	public FicharioProduto(ArrayList<Produto> produto) {
+	public FicharioProduto(ArrayList<Produto> produtos) {
 		sc = new Scanner(System.in);
+		this.produtos = produtos;
 	}
 
 	public void incluir() {
@@ -28,7 +30,7 @@ public class FicharioProduto {
 			if (menu == 1) {
 				prod = new Produto();
 				sc.nextLine();
-				prod.setCodigo(produtos.size()+1);
+				prod.setCodigo(produtos.size() + 1);
 				System.out.println(": NOME                       :");
 				prod.setNome(sc.nextLine());
 				System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :");
@@ -137,8 +139,7 @@ public class FicharioProduto {
 					prod.setDescricaoMedicamento(sc.nextLine());
 					System.out.println(": PREÇO                      :");
 					prod.setPreco(sc.nextFloat());
-				}
-				else
+				} else
 					System.out.println("Produto não encontrado");
 			}
 		} while (menu != 2);
@@ -176,13 +177,17 @@ public class FicharioProduto {
 	}
 
 	public void relatorio() {
-		for (int i = 0; i < produtos.size(); i++) {
-			System.out.println("--==[ R E L A T O R I O]==--");
-			imprimeTodosOsDados();
-			break;
-		}
-	}
+		if (!produtos.isEmpty()) {
 
+			for (int i = 0; i < produtos.size(); i++) {
+				System.out.println("--==[ R E L A T O R I O]==--");
+				imprimeTodosOsDados();
+				break;
+			}
+		}
+		else
+			System.out.println("ArrayList vazio.");
+	}
 
 	private void imprime() {
 		Iterator<Produto> iterator = produtos.iterator();
@@ -201,34 +206,35 @@ public class FicharioProduto {
 
 		while (iterator.hasNext()) {
 			Produto prod = iterator.next();
-			System.out.println(": CODIGO                     :"+prod.getCodigo());
-			System.out.println(": NOME                       :"+prod.getNome());
-			System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :"+prod.getIdEmpresa());
-			System.out.println(": NUMERO DE REGISTRO         :"+prod.getNumeroRegistro());
-			System.out.println(": INFORMAÇÃO FARMACEUTICA    :"+prod.getInformacaoFarmaceutica());
-			System.out.println(": TELEFONE DO LABORARORIO    :"+prod.getTelefoneFarmaceuticaRespnsavel());
-			System.out.println(": TELEFONE DO SAG            :"+prod.getTelefoneSag());
-			System.out.println(": IDENTIFICAÇÃO DO LACRE     :"+prod.getIdLacreSeguranca());
-			System.out.println(": TARJA                      :"+prod.getTarja());
-			System.out.println(": MEDIDA DO MEDICAMENTO      :"+prod.getMedidaMedicamento());
-			System.out.println(": DESCRIÇÃO DO MEDICAMENTO   :"+prod.getDescricaoMedicamento());
-			System.out.println(": PREÇO                      :"+prod.getPreco());
+			System.out.println(": CODIGO                     :" + prod.getCodigo());
+			System.out.println(": NOME                       :" + prod.getNome());
+			System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :" + prod.getIdEmpresa());
+			System.out.println(": NUMERO DE REGISTRO         :" + prod.getNumeroRegistro());
+			System.out.println(": INFORMAÇÃO FARMACEUTICA    :" + prod.getInformacaoFarmaceutica());
+			System.out.println(": TELEFONE DO LABORARORIO    :" + prod.getTelefoneFarmaceuticaRespnsavel());
+			System.out.println(": TELEFONE DO SAG            :" + prod.getTelefoneSag());
+			System.out.println(": IDENTIFICAÇÃO DO LACRE     :" + prod.getIdLacreSeguranca());
+			System.out.println(": TARJA                      :" + prod.getTarja());
+			System.out.println(": MEDIDA DO MEDICAMENTO      :" + prod.getMedidaMedicamento());
+			System.out.println(": DESCRIÇÃO DO MEDICAMENTO   :" + prod.getDescricaoMedicamento());
+			System.out.println(": PREÇO                      :" + prod.getPreco());
 			System.out.println(":============================:");
 		}
 	}
+
 	private void imprimeConsulata(Produto prod) {
-		System.out.println(": CODIGO                     :"+prod.getCodigo());
-		System.out.println(": NOME                       :"+prod.getNome());
-		System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :"+prod.getIdEmpresa());
-		System.out.println(": NUMERO DE REGISTRO         :"+prod.getNumeroRegistro());
-		System.out.println(": INFORMAÇÃO FARMACEUTICA    :"+prod.getInformacaoFarmaceutica());
-		System.out.println(": TELEFONE DO LABORARORIO    :"+prod.getTelefoneFarmaceuticaRespnsavel());
-		System.out.println(": TELEFONE DO SAG            :"+prod.getTelefoneSag());
-		System.out.println(": IDENTIFICAÇÃO DO LACRE     :"+prod.getIdLacreSeguranca());
-		System.out.println(": TARJA                      :"+prod.getTarja());
-		System.out.println(": MEDIDA DO MEDICAMENTO      :"+prod.getMedidaMedicamento());
-		System.out.println(": DESCRIÇÃO DO MEDICAMENTO   :"+prod.getDescricaoMedicamento());
-		System.out.println(": PREÇO                      :"+prod.getPreco());
+		System.out.println(": CODIGO                     :" + prod.getCodigo());
+		System.out.println(": NOME                       :" + prod.getNome());
+		System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :" + prod.getIdEmpresa());
+		System.out.println(": NUMERO DE REGISTRO         :" + prod.getNumeroRegistro());
+		System.out.println(": INFORMAÇÃO FARMACEUTICA    :" + prod.getInformacaoFarmaceutica());
+		System.out.println(": TELEFONE DO LABORARORIO    :" + prod.getTelefoneFarmaceuticaRespnsavel());
+		System.out.println(": TELEFONE DO SAG            :" + prod.getTelefoneSag());
+		System.out.println(": IDENTIFICAÇÃO DO LACRE     :" + prod.getIdLacreSeguranca());
+		System.out.println(": TARJA                      :" + prod.getTarja());
+		System.out.println(": MEDIDA DO MEDICAMENTO      :" + prod.getMedidaMedicamento());
+		System.out.println(": DESCRIÇÃO DO MEDICAMENTO   :" + prod.getDescricaoMedicamento());
+		System.out.println(": PREÇO                      :" + prod.getPreco());
 		System.out.println(":============================:");
 	}
 }

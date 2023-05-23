@@ -1,10 +1,11 @@
-package principal;
+package ficharios;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
+import objetos.Cliente;
 
 public class FicharioCliente {
 	Scanner sc = new Scanner(System.in);
