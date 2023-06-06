@@ -34,7 +34,7 @@ public class Main {
 		FicharioCompra ficharioCompra = new FicharioCompra();
 		int opMenu = 0, opFuncionario = 0, opLoja = 0, opCliente = 0, opProduto = 0, opCompra = 0;
 		do {
-			System.out.println("-----=====[F A R M  C I A]=====--------");
+			System.out.println("-----=====[F A R M A C I A]=====--------");
 			System.out.println("--==[ 1 - CADASTRO DE LOJAS       ]==--");
 			System.out.println("--==[ 2 - CADASTRO DE FUNCIONARIOS]==--");
 			System.out.println("--==[ 3 - CADASTRO DE CLIENTES    ]==--");
@@ -160,9 +160,9 @@ public class Main {
 					switch (opCompra) {
 					case 1:
 						if(!lojas.isEmpty()) {
-						ficharioCompra.incluir();
+							ficharioCompra.incluir();
 						}else {
-							System.out.println("Cadastre loja antes de entrar");
+							System.out.println("Cadastre lojas antes de entrar");
 						}
 
 						break;
@@ -202,11 +202,11 @@ public class Main {
 									"Não a compras registradas, inclua compras antes de tentar realizar um relatorio!!!!");
 						}
 						break;
-					
+
 					}
 				} while (opCompra != 6);
 				break;
-			case 6: 
+			case 6:
 				System.out.println("Muito obrigado por usar o software!!!");
 				break;
 

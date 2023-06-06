@@ -20,7 +20,7 @@ public class FicharioFuncionario {
 		Funcionario funcionario;
 		int menu = 0;
 		do {
-			System.out.println("--==[CADASTRO DE FUNCIONARIO]==--");
+			System.out.println("--==[CADASTRO DE FUNCIONÁRIO]==--");
 			System.out.println("Escolha uma opcao: ");
 			System.out.println("--==[1 - cadastro]==--");
 			System.out.println("--==[2 - sair]==--");
@@ -36,7 +36,7 @@ public class FicharioFuncionario {
 				funcionario.setCpf(sc.nextLine());
 				System.out.println("CARGO       :");
 				funcionario.setCargo(sc.nextLine());
-				System.out.println("SALARIO     :");
+				System.out.println("SALÁRIO     :");
 				funcionario.setSalario(sc.nextFloat());
 				sc.nextLine();
 				System.out.println("RUA         :");
@@ -66,7 +66,7 @@ public class FicharioFuncionario {
 			imprime();
 		sc.nextLine();
 		String resp;
-		System.out.println("Esolha o cpf do funcionario que deseja excluir: ");
+		System.out.println("Esolha o cpf do funcionário que deseja excluir: ");
 		resp = sc.nextLine();
 		int ind = 0;
 		boolean achou = false;
@@ -80,9 +80,9 @@ public class FicharioFuncionario {
 		}
 		if (achou) {
 			funcionarios.remove(ind);
-			System.out.println("forencedor excluido.");
+			System.out.println("funcionário excluído.");
 		} else
-			System.out.println("Fornecedor não encontrado");
+			System.out.println("Funcionário não encontrado");
 	}
 
 	public void alterar() {
@@ -95,7 +95,7 @@ public class FicharioFuncionario {
 		// boolean achou = false;
 		do {
 
-			System.out.println("--==[ALTERAÇÃO DE FORNECEDOR]==--");
+			System.out.println("--==[ALTERAÇÃO DE FUNCIONÁRIO]==--");
 			System.out.println("Escolha uma opcao: ");
 			System.out.println("--==[1 - cadastro]==--");
 			System.out.println("--==[2 - sair]==--");
@@ -104,7 +104,7 @@ public class FicharioFuncionario {
 			if (menu == 1) {
 				String resp;
 				imprime();
-				System.out.println("Esolha o cpf do funcionario que deseja Alterar: ");
+				System.out.println("Esolha o cpf do funcionário que deseja Alterar: ");
 				resp = sc.nextLine();
 				int ind = 0;
 				boolean achou = false;
@@ -126,7 +126,7 @@ public class FicharioFuncionario {
 					funcionario.setCpf(sc.nextLine());
 					System.out.println("CARGO        :");
 					funcionario.setCargo(sc.nextLine());
-					System.out.println("SALARIO     :");
+					System.out.println("SALÁRIO     :");
 					funcionario.setSalario(sc.nextFloat());
 					sc.nextLine();
 					System.out.println("RUA         :");
@@ -142,7 +142,7 @@ public class FicharioFuncionario {
 					System.out.println("TELEFONE         :");
 					funcionario.setTelefone(sc.nextLine());
 				} else
-					System.out.println("Funcionario não encontrado");
+					System.out.println("Funcionário não encontrado");
 			}
 		} while (menu != 2);
 	}
@@ -158,7 +158,7 @@ public class FicharioFuncionario {
 			String resp;
 			boolean achou = false;
 			/* Metodo para pesquisar em um ArreyList */
-			System.out.println("Esolha o cpf do funcionario que deseja consultar: ");
+			System.out.println("Esolha o cpf do funcionário que deseja consultar: ");
 			resp = sc.nextLine();
 			int ind = 0;
 			for (int i = 0; i < funcionarios.size(); i++) {
@@ -171,17 +171,17 @@ public class FicharioFuncionario {
 			}
 			if (achou) {
 				func = funcionarios.get(ind);
-				System.out.println("--==[Dados de cadastro do funcionario]==--");
+				System.out.println("--==[Dados de cadastro do funcionário]==--");
 				System.out.println("--=====================================--");
 				imprimeConsulata(func);
 			} else
-				System.out.println("Fornecedor invalido ou não exite.");
+				System.out.println("Funcionário inválido ou não exite.");
 		}
 	}
 
 	public void relatorio() {
 		for (int i = 0; i < funcionarios.size(); i++) {
-			System.out.println("--==[ R E L A T O R I O]==--");
+			System.out.println("--==[ R E L A T Ó R I O]==--");
 			imprimeTodosOsDados();
 			break;
 		}
@@ -192,7 +192,7 @@ public class FicharioFuncionario {
 
 		while (iterator.hasNext()) {
 			Funcionario funcionarios = iterator.next();
-			System.out.println("CODIGO      :" + funcionarios.getCodigo());
+			System.out.println("CÓDIGO      :" + funcionarios.getCodigo());
 			System.out.println("NOME        :" + funcionarios.getNome());
 			System.out.println("CPF         :" + funcionarios.getCpf());
 			System.out.println("=============");
@@ -201,7 +201,7 @@ public class FicharioFuncionario {
 
 	private void imprimeConsulata(Funcionario func) {
 
-		System.out.println("CODIGO      :" + func.getCodigo());
+		System.out.println("CÓDIGO      :" + func.getCodigo());
 		System.out.println("NOME        :" + func.getNome());
 		System.out.println("CNPJ        :" + func.getCpf());
 		System.out.println("CARGO       :" + func.getCargo());
@@ -220,11 +220,11 @@ public class FicharioFuncionario {
 
 		while (iterator.hasNext()) {
 			Funcionario funcionario = iterator.next();
-			System.out.println("CODIGO      :" + funcionario.getCodigo());
+			System.out.println("CÓDIGO      :" + funcionario.getCodigo());
 			System.out.println("NOME        :" + funcionario.getNome());
 			System.out.println("CNPJ        :" + funcionario.getCpf());
 			System.out.println("CARGO       :" + funcionario.getCargo());
-			System.out.println("SALARIO     :" + funcionario.getSalario());
+			System.out.println("SALÁRIO     :" + funcionario.getSalario());
 			System.out.println("RUA         :" + funcionario.getRua());
 			System.out.println("BAIRRO      :" + funcionario.getBairro());
 			System.out.println("CIDADE      :" + funcionario.getCidade());

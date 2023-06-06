@@ -51,7 +51,7 @@ public class FicharioCliente {
 	public void relatorio() {
 		Calendar c = Calendar.getInstance();
 		for (int i = 0; i < clientes.size(); i++) {
-			System.out.println("--==[ R E L A T O R I O]==--");
+			System.out.println("--==[ R E L A T Ó R I O]==--");
 			System.out.println("" + c.getTime());
 			imprimeTodosOsDados();
 			break;
@@ -105,7 +105,7 @@ public class FicharioCliente {
 			return;
 		} else
 			imprime();
-		System.out.println("Esolha o codigo do cliente que deseja Alterar: ");
+		System.out.println("Esolha o código do cliente que deseja Alterar: ");
 		int resp = sc.nextInt();
 		int ind = 0;
 		boolean achou = false;
@@ -161,7 +161,7 @@ public class FicharioCliente {
 			return;
 		} else
 			imprime();
-		System.out.println("Esolha o codigo do cliente que deseja Alterar: ");
+		System.out.println("Esolha o código do cliente que deseja Alterar: ");
 		int resp = sc.nextInt();
 		int ind = 0;
 		boolean achou = false;
@@ -185,7 +185,7 @@ public class FicharioCliente {
 
 		while (iterator.hasNext()) {
 			Cliente cliente = iterator.next();
-			System.out.println("CODIGO      :" + cliente.getCodigo());
+			System.out.println("CÓDIGO      :" + cliente.getCodigo());
 			System.out.println("NOME        :" + cliente.getNome());
 			System.out.println("CPF        :" + cliente.getCpf());
 			System.out.println("=============");
@@ -194,7 +194,7 @@ public class FicharioCliente {
 
 	private void imprimeConsulata(Cliente cli) {
 
-		System.out.println("CODIGO      :" + cli.getCodigo());
+		System.out.println("CÓDIGO      :" + cli.getCodigo());
 		System.out.println("NOME        :" + cli.getNome());
 		System.out.println("CPF        :" + cli.getCpf());
 		System.out.println("RUA         :" + cli.getRua());
@@ -211,7 +211,7 @@ public class FicharioCliente {
 
 		while (iterator.hasNext()) {
 			Cliente cliente = iterator.next();
-			System.out.println("CODIGO      :" + cliente.getCodigo());
+			System.out.println("CÓDIGO      :" + cliente.getCodigo());
 			System.out.println("NOME        :" + cliente.getNome());
 			System.out.println("CPF         :" + cliente.getCpf());
 			System.out.println("RUA         :" + cliente.getRua());

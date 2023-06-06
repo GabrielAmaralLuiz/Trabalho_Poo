@@ -15,7 +15,7 @@ public class FicharioLoja {
 	private ArrayList<Produto> produtosCadastrados;
 
 	public FicharioLoja(ArrayList<Produto> produtos, ArrayList<Loja> lojas) {
-		lojas = new ArrayList<>();
+		
 		sc = new Scanner(System.in);
 		produtosCadastrados = produtos;
 		this.lojas = lojas;
