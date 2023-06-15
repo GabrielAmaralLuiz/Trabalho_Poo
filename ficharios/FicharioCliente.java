@@ -1,5 +1,6 @@
 package ficharios;
 
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -18,20 +19,22 @@ public class FicharioCliente {
 
 	public void consultar() {
 		Cliente cli;
+		int ind = 0;
+	
 		if (clientes.isEmpty()) {
 			System.out.println("ArreyList Vazio.");
 			return;
 		} else {
 			System.out.println("--==[ C O N S U L T A R]==--");
 			imprime();
-			String resp;
+			int resp;
 			boolean achou = false;
 			/* Metodo para pesquisar em um ArreyList */
-			System.out.println("Esolha o CNPJ do cliente que deseja consultar: ");
-			resp = sc.nextLine();
-			int ind = 0;
+			System.out.println("Digite o código do cliente");
+			resp=sc.nextInt();
 			for (int i = 0; i < clientes.size(); i++) {
-				if (resp.equals(clientes.get(i).getCpf())) {
+
+				if (resp== clientes.get(i).getCodigo()) {
 					achou = true;
 					ind = i;
 					break;
@@ -49,12 +52,16 @@ public class FicharioCliente {
 	}
 
 	public void relatorio() {
-		Calendar c = Calendar.getInstance();
-		for (int i = 0; i < clientes.size(); i++) {
-			System.out.println("--==[ R E L A T Ó R I O]==--");
-			System.out.println("" + c.getTime());
-			imprimeTodosOsDados();
-			break;
+		if (clientes.isEmpty()) {
+			System.out.println("Sem clientes cadastrados! Inclua antes de tentar gerar um relatório.");
+		} else {
+			Calendar c = Calendar.getInstance();
+			for (int i = 0; i < clientes.size(); i++) {
+				System.out.println("--==[ R E L A T Ó R I O]==--");
+				System.out.println("" + c.getTime());
+				imprimeTodosOsDados();
+				break;
+			}
 		}
 	}
 
@@ -93,15 +100,16 @@ public class FicharioCliente {
 		System.out.println("TELEFONE         :");
 		cli.setTelefone(sc.nextLine());
 		Random gerador = new Random();
-		int aleatorio = gerador.nextInt(30);
+		int aleatorio = gerador.nextInt(100);
 		cli.setCodigo(aleatorio);
 		clientes.add(cli);
+		System.out.println("Cliente cadastrado!!");
 	}
 
 	public void alterar() {
 		Cliente cli;
 		if (clientes.isEmpty()) {
-			System.out.println("ArreyList vazio");
+			System.out.println("Sem clientes cadastrados! inclua antes de alterar!");
 			return;
 		} else
 			imprime();
@@ -111,9 +119,12 @@ public class FicharioCliente {
 		boolean achou = false;
 
 		for (int i = 0; i < clientes.size(); i++) {
-			achou = true;
-			ind = i;
-			break;
+			if (resp == clientes.get(i).getCodigo()) {
+				achou = true;
+				ind = i;
+				break;
+
+			}
 		}
 
 		if (achou) {
@@ -149,27 +160,31 @@ public class FicharioCliente {
 			System.out.println("CEP         :");
 			cli.setCep(sc.nextLine());
 			System.out.println("TELEFONE         :");
+			cli.setTelefone(sc.nextLine());
 			System.out.println("Cliente  alterado.");
 		} else
 			System.out.println("cliente não encontrado");
 	}
 
 	public void excluir() {
-		Cliente cli;
+		
 		if (clientes.isEmpty()) {
-			System.out.println("ArreyList vazio");
+			System.out.println("Sem clientes cadastrados! inclua antes de excluir!");
 			return;
 		} else
 			imprime();
-		System.out.println("Esolha o código do cliente que deseja Alterar: ");
+		System.out.println("Esolha o código do cliente que deseja excluir: ");
 		int resp = sc.nextInt();
 		int ind = 0;
 		boolean achou = false;
 
 		for (int i = 0; i < clientes.size(); i++) {
-			achou = true;
-			ind = i;
-			break;
+			if (resp == clientes.get(i).getCodigo()) {
+				achou = true;
+				ind = i;
+				break;
+
+			}
 		}
 		if (achou) {
 			clientes.remove(ind);
@@ -177,7 +192,6 @@ public class FicharioCliente {
 
 		} else
 			System.out.println("cliente nao removido");
-
 	}
 
 	private void imprime() {
@@ -187,7 +201,11 @@ public class FicharioCliente {
 			Cliente cliente = iterator.next();
 			System.out.println("CÓDIGO      :" + cliente.getCodigo());
 			System.out.println("NOME        :" + cliente.getNome());
-			System.out.println("CPF        :" + cliente.getCpf());
+			if (cliente.getCpf() == null) {
+				System.out.println("CPNJ        :" + cliente.getCnpj());
+			} else {
+				System.out.println("CPF        :" + cliente.getCpf());
+			}
 			System.out.println("=============");
 		}
 	}
@@ -196,7 +214,12 @@ public class FicharioCliente {
 
 		System.out.println("CÓDIGO      :" + cli.getCodigo());
 		System.out.println("NOME        :" + cli.getNome());
-		System.out.println("CPF        :" + cli.getCpf());
+		if (cli.getCpf() == null) {
+			System.out.println("CPNJ        :" + cli.getCnpj());
+		} else {
+			System.out.println("CPF        :" + cli.getCpf());
+		}
+
 		System.out.println("RUA         :" + cli.getRua());
 		System.out.println("BAIRRO      :" + cli.getBairro());
 		System.out.println("CIDADE      :" + cli.getCidade());
@@ -213,7 +236,11 @@ public class FicharioCliente {
 			Cliente cliente = iterator.next();
 			System.out.println("CÓDIGO      :" + cliente.getCodigo());
 			System.out.println("NOME        :" + cliente.getNome());
-			System.out.println("CPF         :" + cliente.getCpf());
+			if (cliente.getCpf() == null) {
+				System.out.println("CPNJ        :" + cliente.getCnpj());
+			} else {
+				System.out.println("CPF         :" + cliente.getCpf());
+			}
 			System.out.println("RUA         :" + cliente.getRua());
 			System.out.println("BAIRRO      :" + cliente.getBairro());
 			System.out.println("CIDADE      :" + cliente.getCidade());
@@ -223,4 +250,9 @@ public class FicharioCliente {
 			System.out.println("=============");
 		}
 	}
+	private static void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+    }
 }

@@ -23,14 +23,6 @@ public class Loja {
 		this.funcionarios = new ArrayList<>();
 	}
 
-	void mostrarProdutos() {
-		Iterator<Produto> itr = produtos.iterator();
-		while (itr.hasNext()) {
-			Produto produto = (Produto) itr.next();
-			System.out.println("----Produtos----");
-		}
-
-	}
 
 	public int getCodigo() {
 		return codigo;
@@ -69,15 +61,34 @@ public class Loja {
 		System.out.println("Codigo: " + codigo);
 		System.out.println();
 
+	} 
+	public void mostrarDados(Loja lojas) {
+		Loja m = lojas;
+		System.out.println("Nome: " + m.getNome());
+		System.out.println("Codigo: " + m.getCodigo());
+		System.out.println();
+
 	}
 
 	public void mostrarLojaComProdutos() {
-		mostrarDados();
 		for (int i = 0; i < produtos.size(); i++) {
 			produtos.get(i).mostrarProduto();
 		}
 
 	}
+	void mostrarProdutos() {
+		Iterator<Produto> itr = produtos.iterator();
+		while (itr.hasNext()) {
+			Produto produto = (Produto) itr.next();
+			System.out.println("----Produtos----");
+			System.out.println("Código:    " + produto.getCodigo());
+			System.out.println("Nome:    " + produto.getNome());
+			System.out.println("Preço:    " + produto.getPreco());
+			
+		}
+
+	}
+	
 
 	private void imprime() {
 

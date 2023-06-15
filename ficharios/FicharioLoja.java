@@ -15,7 +15,7 @@ public class FicharioLoja {
 	private ArrayList<Produto> produtosCadastrados;
 
 	public FicharioLoja(ArrayList<Produto> produtos, ArrayList<Loja> lojas) {
-		
+
 		sc = new Scanner(System.in);
 		produtosCadastrados = produtos;
 		this.lojas = lojas;
@@ -29,92 +29,93 @@ public class FicharioLoja {
 			System.out.println("-=[ 1 - CADASTRAR LOJA     ]=-");
 			System.out.println("-=[ 2 - INCLUIR PRODUTO    ]=-");
 			System.out.println("-=[ 3 - REMOVER PRODUTO    ]=-");
-			System.out.println("-=[ 4 - RELATÓRIO      =]=-");
-			System.out.println("-=[ 5 - SAIR      =]=-");
+			System.out.println("-=[ 4 - SAIR      =]=-");
 			menu = sc.nextInt();
+			if ((menu > 4) || menu < 0) {
+				System.out.println("Opção inválida! digite algo entre 1 e 4!");
+			} else {
+				switch (menu) {
+				case 1:
+					Loja novaLoja = new Loja();
+					System.out.println(": CODIGO DA LOJA  :");
+					novaLoja.setCodigo(sc.nextInt());
+					sc.nextLine();
+					System.out.println(": RAZÃO SOCIAL  :");
+					novaLoja.setNome(sc.nextLine());
+					lojas.add(novaLoja);
+					System.out.println("Loja cadastrada");
+					break;
+				case 2:
 
-			switch (menu) {
-			case 1:
-				Loja novaLoja = new Loja();
-				System.out.println(": CODIGO DA LOJA  :");
-				novaLoja.setCodigo(sc.nextInt());
-				sc.nextLine();
-				System.out.println(": RAZÃO SOCIAL  :");
-				novaLoja.setNome(sc.nextLine());
-				lojas.add(novaLoja);
-				System.out.println("Loja cadastrada");
-				break;
-			case 2:
+					int codigoLoja;
+					int posLoja = 0;
+					boolean achou = false;
+					do {
+						if (lojas.isEmpty()) {
+							System.out.println("Lista de lojas vazia !");
 
-				int codigoLoja;
-				int posLoja = 0;
-				boolean achou = false;
-				do {
-					if (lojas.isEmpty()) {
-						System.out.println("Lista de lojas vazia !");
-						break;
-					} else {
-						mostraLojas();
-						System.out.println("Digite o codigo da loja que deseja adicionar um produto.");
-						codigoLoja = sc.nextInt();
+						} else {
+							mostraLojas();
+							System.out.println("Digite o codigo da loja que deseja adicionar um produto.");
+							codigoLoja = sc.nextInt();
 
-						for (int i = 0; i < lojas.size(); i++) {
-							if (lojas.get(i).getCodigo() == codigoLoja) {
-								achou = true;
-								posLoja = i;
-								break;
+							for (int i = 0; i < lojas.size(); i++) {
+								if (lojas.get(i).getCodigo() == codigoLoja) {
+									achou = true;
+									posLoja = i;
+									break;
+								}
+							}
+
+							if (!achou)
+								System.out.println("Loja errada ou inexistente.");
+							else {
+								Loja loja = lojas.get(posLoja);
+								if (produtosCadastrados.isEmpty()) {
+									System.err.println("Lista de produtos vazia !");
+									break;
+								}
+								escolhaProduto(loja);
+
 							}
 						}
+					} while (!achou);
 
-						if (!achou)
-							System.out.println("Loja errada ou inexistente.");
-						else {
-							Loja loja = lojas.get(posLoja);
-							if (produtosCadastrados.isEmpty()) {
-								System.out.println("Lista de produtos vazia !");
-								break;
-							}
-							escolhaProduto(loja);
-
-						}
-					}
-				} while (!achou);
-
-				break;
-			case 3:
-				int posicaoLojaExcluirP;
-				boolean achouRemover = false;
-				int indRemove = 0;
-				do {
-					if (lojas.isEmpty()) {
-						System.out.println("lista de lojas vazia");
-						break;
-					} else {
-						mostraLojas();
-						System.out.println("lista de lojas vazia");
-						posicaoLojaExcluirP = sc.nextInt();
-						for (int i = 0; i < lojas.size(); i++) {
-							if (lojas.get(i).getCodigo() == posicaoLojaExcluirP) {
-								achouRemover = true;
-								indRemove = i;
-								break;
-							}
-						}
-						if (!achouRemover)
-							System.out.println("Loja errada ou inexistente.");
-						else {
-							Loja loja = lojas.get(posicaoLojaExcluirP);
-							removerProduto(produtosCadastrados);
-							System.out.println("produto removido.");
+					break;
+				case 3:
+					int posicaoLojaExcluirP;
+					boolean achouRemover = false;
+					int indRemove = 0;
+					do {
+						if (lojas.isEmpty()) {
+							System.out.println("lista de lojas vazia");
 							break;
+						} else {
+							mostraLojas();
+							System.out.println("lista de lojas vazia");
+							posicaoLojaExcluirP = sc.nextInt();
+							for (int i = 0; i < lojas.size(); i++) {
+								if (lojas.get(i).getCodigo() == posicaoLojaExcluirP) {
+									achouRemover = true;
+									indRemove = i;
+									break;
+								}
+							}
+							if (!achouRemover)
+								System.out.println("Loja errada ou inexistente.");
+							else {
+								Loja loja = lojas.get(posicaoLojaExcluirP);
+								removerProduto(produtosCadastrados);
+								System.out.println("produto removido.");
+								break;
+							}
 						}
-					}
-				} while (!achouRemover);
-				break;
+					} while (!achouRemover);
+					break;
 
+				}
 			}
-
-		} while (menu != 5);
+		} while (menu != 4);
 	}
 
 	public void excluir() {
@@ -129,6 +130,9 @@ public class FicharioLoja {
 				System.out.println("-=[ 1 - EXCLUIR =]=-");
 				System.out.println("-=[ 2 - SAIR      =]=-");
 				menu = sc.nextInt();
+				if((menu >2) || (menu <0)) {
+					System.out.println("Opção inválida! Selecione algo entre 1 e 2!");
+				}else{
 				if (menu == 1) {
 					imprime();
 					System.out.println("--===[EXCLUSÃO DE LOJA]===--");
@@ -142,12 +146,13 @@ public class FicharioLoja {
 							break;
 						}
 					}
-					if (!removida) {
+					if (removida) {
 						System.out.println("Loja com código " + resp + " excluída com sucesso.");
 						return;
 					} else {
 						System.out.println("Loja não encontrada ou não excluída.");
 					}
+				}
 				}
 			} while (menu != 2);
 		}
@@ -189,28 +194,32 @@ public class FicharioLoja {
 			System.out.println("-=[ 2 - SAIR       ]=-");
 			menu = sc.nextInt();
 			if (menu == 1) {
-				imprime();
-				System.out.println("--===[ALTERAR DE LOJA]===--");
-				System.out.println("Digite o código da loja que deseja ALTERA:");
-				int resp = sc.nextInt();
-				int ind = 0;
-				boolean alteracao = false;
-				for (int i = 0; i < lojas.size(); i++) {
-					if (resp == lojas.get(i).getCodigo()) {
-						alteracao = true;
-						ind = i;
-						break;
+				if (lojas.isEmpty()) {
+					System.out.println("Sem lojas cadastradas!!!");
+				} else {
+					imprime();
+					System.out.println("--===[ALTERAR DE LOJA]===--");
+					System.out.println("Digite o código da loja que deseja ALTERA:");
+					int resp = sc.nextInt();
+					int ind = 0;
+					boolean alteracao = false;
+					for (int i = 0; i < lojas.size(); i++) {
+						if (resp == lojas.get(i).getCodigo()) {
+							alteracao = true;
+							ind = i;
+							break;
+						}
 					}
-				}
-				if (alteracao) {
-					loja = lojas.get(ind);
+					if (alteracao) {
+                        System.out.println("Vamos alterar! (Só está disponível a alteração da razão social da loja!)");
+						System.out.print(": RAZÃO SOCIAL  :");
+						clearBuffer(sc);
+						String razao = sc.nextLine();
+						lojas.get(ind).setNome(razao);
+						System.out.println("Loja alterada");
+					}
 
-					System.out.println(": RAZÃO SOCIAL  :");
-					loja.setNome(sc.nextLine());
-					lojas.add(loja);
-					System.out.println("Loja alterada");
 				}
-
 			}
 
 		} while (menu != 2);
@@ -334,5 +343,20 @@ public class FicharioLoja {
 		else {
 			produtos.remove(posicao);
 		}
+		
 	}
+	void mostrarProdutosLoja(int posicao) {
+		Loja exibir = new Loja();
+		exibir = lojas.get(posicao);
+		for(int x=0; x< exibir.getProdutos().size();x++) {
+		System.out.println(" Código      : "+ exibir.getProdutos().get(x).getCodigo() );
+		System.out.println(" Nome      : " +exibir.getProdutos().get(x).getNome());
+		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=");
+		}
+	}
+	private static void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+    }
 }

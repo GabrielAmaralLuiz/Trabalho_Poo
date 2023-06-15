@@ -31,15 +31,15 @@ public class Main {
 		FicharioCliente ficharioCliente = new FicharioCliente(cliente);
 		FicharioProduto ficharioProduto = new FicharioProduto(produtos);
 		FicharioLoja ficharioLoja = new FicharioLoja(produtos, lojas);
-		FicharioCompra ficharioCompra = new FicharioCompra();
+		FicharioCompra ficharioCompra = new FicharioCompra(compras, lojas, produtos, cliente);
 		int opMenu = 0, opFuncionario = 0, opLoja = 0, opCliente = 0, opProduto = 0, opCompra = 0;
 		do {
 			System.out.println("-----=====[F A R M A C I A]=====--------");
-			System.out.println("--==[ 1 - CADASTRO DE LOJAS       ]==--");
-			System.out.println("--==[ 2 - CADASTRO DE FUNCIONARIOS]==--");
-			System.out.println("--==[ 3 - CADASTRO DE CLIENTES    ]==--");
-			System.out.println("--==[ 4 - CADASTRO DE PRODUTOS    ]==--");
-			System.out.println("--==[ 5 - COMPRAS                 ]==--");
+			System.out.println("--==[ 1 - CONTROLE DE LOJAS       ]==--");
+			System.out.println("--==[ 2 - CONTROLE DE FUNCIONARIOS]==--");
+			System.out.println("--==[ 3 - CONTROLE DE CLIENTES    ]==--");
+			System.out.println("--==[ 4 - CONTROLE DE PRODUTOS    ]==--");
+			System.out.println("--==[ 5 - CONTROLE DE COMPRAS     ]==--");
 			System.out.println("--==[ 6 - SAIR                    ]==--");
 			opMenu = sc.nextInt();
 			switch (opMenu) {
@@ -49,6 +49,9 @@ public class Main {
 					System.out.println("-----====[LOJA]===----");
 					mostraMenu();
 					opLoja = sc.nextInt();
+					if((opLoja >6) || (opLoja <0)) {
+						System.out.println("Opção inválida! selecione uma opção entre 1 e 6!");
+					}else {
 					switch (opLoja) {
 					case 1:
 						ficharioLoja.incluir();
@@ -67,6 +70,7 @@ public class Main {
 						break;
 					case 6:
 						break;
+					}
 					}
 				} while (opLoja != 6);
 				break;

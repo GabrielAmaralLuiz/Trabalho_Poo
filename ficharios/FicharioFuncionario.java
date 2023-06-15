@@ -19,42 +19,55 @@ public class FicharioFuncionario {
 	public void incluir() {
 		Funcionario funcionario;
 		int menu = 0;
+		int codigo = 1;
+
 		do {
+			int ultimaPosicao = funcionarios.size();
 			System.out.println("--==[CADASTRO DE FUNCIONÁRIO]==--");
 			System.out.println("Escolha uma opcao: ");
 			System.out.println("--==[1 - cadastro]==--");
 			System.out.println("--==[2 - sair]==--");
 			menu = sc.nextInt();
+			if ((menu > 2) || (menu < 0)) {
+				System.out.println("Opção inválida! digite algo entre 1 e 2!");
+			} else {
 
-			if (menu == 1) {
-				funcionario = new Funcionario();
-				sc.nextLine();
-				System.out.println("--==[DIGITE OS CAMPOS A BAIXO]==--");
-				System.out.println("NOME        :");
-				funcionario.setNome(sc.nextLine());
-				System.out.println("CPF         :");
-				funcionario.setCpf(sc.nextLine());
-				System.out.println("CARGO       :");
-				funcionario.setCargo(sc.nextLine());
-				System.out.println("SALÁRIO     :");
-				funcionario.setSalario(sc.nextFloat());
-				sc.nextLine();
-				System.out.println("RUA         :");
-				funcionario.setRua(sc.nextLine());
-				System.out.println("BAIRRO      :");
-				funcionario.setBairro(sc.nextLine());
-				System.out.println("CIDADE      :");
-				funcionario.setCidade(sc.nextLine());
-				System.out.println("ESTADO      :");
-				funcionario.setEstado(sc.nextLine());
-				System.out.println("CEP         :");
-				funcionario.setCep(sc.nextLine());
-				System.out.println("TELEFONE    :");
-				funcionario.setTelefone(sc.nextLine());
-				funcionarios.add(funcionario);
+				if (menu == 1) {
+					funcionario = new Funcionario();
+					sc.nextLine();
+					System.out.println("--==[DIGITE OS CAMPOS A BAIXO]==--");
+					System.out.println("NOME        :");
+					funcionario.setNome(sc.nextLine());
+					System.out.println("CPF         :");
+					funcionario.setCpf(sc.nextLine());
+					System.out.println("CARGO       :");
+					funcionario.setCargo(sc.nextLine());
+					System.out.println("SALÁRIO     :");
+					funcionario.setSalario(sc.nextFloat());
+					sc.nextLine();
+					System.out.println("RUA         :");
+					funcionario.setRua(sc.nextLine());
+					System.out.println("BAIRRO      :");
+					funcionario.setBairro(sc.nextLine());
+					System.out.println("CIDADE      :");
+					funcionario.setCidade(sc.nextLine());
+					System.out.println("ESTADO      :");
+					funcionario.setEstado(sc.nextLine());
+					System.out.println("CEP         :");
+					funcionario.setCep(sc.nextLine());
+					System.out.println("TELEFONE    :");
+					funcionario.setTelefone(sc.nextLine());
+					if (!funcionarios.isEmpty()) {
+						codigo = ultimaPosicao + 1;
+						funcionario.setCodigo(codigo);
+						funcionarios.add(funcionario);
+					} else {
+						funcionario.setCodigo(codigo);
+						funcionarios.add(funcionario);
+					}
 
+				}
 			}
-
 		} while (menu != 2);
 	}
 
@@ -63,19 +76,20 @@ public class FicharioFuncionario {
 			System.out.println("ArreyList vazio");
 			return;
 		} else
-			imprime();
-		sc.nextLine();
-		String resp;
-		System.out.println("Esolha o cpf do funcionário que deseja excluir: ");
-		resp = sc.nextLine();
-		int ind = 0;
+			System.out.println("Exibindo todos os funcionários cadastrados");
+		imprime();
+		int resp;
 		boolean achou = false;
-
+		
+		System.out.println("Esolha o codigo do funcionário que deseja consultar: ");
+		resp = sc.nextInt();
+		int ind = 0;
 		for (int i = 0; i < funcionarios.size(); i++) {
-			if (resp.equals(funcionarios.get(i).getCpf())) {
+			if (resp == funcionarios.get(i).getCodigo()) {
 				achou = true;
 				ind = i;
 				break;
+
 			}
 		}
 		if (achou) {
@@ -88,7 +102,7 @@ public class FicharioFuncionario {
 	public void alterar() {
 		Funcionario funcionario;
 		if (funcionarios.isEmpty()) {
-			System.out.println("ArreyList vazio");
+			System.out.println("Sem cadastro de funcionários");
 			return;
 		}
 		int menu = 0;
@@ -97,29 +111,29 @@ public class FicharioFuncionario {
 
 			System.out.println("--==[ALTERAÇÃO DE FUNCIONÁRIO]==--");
 			System.out.println("Escolha uma opcao: ");
-			System.out.println("--==[1 - cadastro]==--");
+			System.out.println("--==[1 - alterar]==--");
 			System.out.println("--==[2 - sair]==--");
 			menu = sc.nextInt();
 			sc.nextLine();
 			if (menu == 1) {
-				String resp;
-				imprime();
-				System.out.println("Esolha o cpf do funcionário que deseja Alterar: ");
-				resp = sc.nextLine();
-				int ind = 0;
+				int resp;
 				boolean achou = false;
-
+				imprime();
+				System.out.println("Esolha o codigo do funcionário que deseja consultar: ");
+				resp = sc.nextInt();
+				int ind = 0;
 				for (int i = 0; i < funcionarios.size(); i++) {
-					if (resp.equals(funcionarios.get(i).getCpf())) {
+					if (resp == funcionarios.get(i).getCodigo()) {
 						achou = true;
 						ind = i;
 						break;
+
 					}
 				}
 				if (achou) {
 					funcionario = funcionarios.get(ind);
 					System.out.println("--==[DIGITE OS CAMPOS A BAIXO]==--");
-
+					clearBuffer(sc);
 					System.out.println("NOME        :");
 					funcionario.setNome(sc.nextLine());
 					System.out.println("CPF         :");
@@ -155,14 +169,14 @@ public class FicharioFuncionario {
 		} else {
 			System.out.println("--==[ C O N S U L T A R]==--");
 			imprime();
-			String resp;
+			int resp;
 			boolean achou = false;
 			/* Metodo para pesquisar em um ArreyList */
-			System.out.println("Esolha o cpf do funcionário que deseja consultar: ");
-			resp = sc.nextLine();
+			System.out.println("Esolha o codigo do funcionário que deseja consultar: ");
+			resp = sc.nextInt();
 			int ind = 0;
 			for (int i = 0; i < funcionarios.size(); i++) {
-				if (resp.equals(funcionarios.get(i).getCpf())) {
+				if (resp == funcionarios.get(i).getCodigo()) {
 					achou = true;
 					ind = i;
 					break;
@@ -180,10 +194,14 @@ public class FicharioFuncionario {
 	}
 
 	public void relatorio() {
-		for (int i = 0; i < funcionarios.size(); i++) {
-			System.out.println("--==[ R E L A T Ó R I O]==--");
-			imprimeTodosOsDados();
-			break;
+		if (funcionarios.isEmpty()) {
+			System.out.println("Sem cadastro de funcionários, inclua antes de excluir!!");
+		} else {
+			for (int i = 0; i < funcionarios.size(); i++) {
+				System.out.println("--==[ R E L A T Ó R I O]==--");
+				imprimeTodosOsDados();
+				break;
+			}
 		}
 	}
 
@@ -232,6 +250,21 @@ public class FicharioFuncionario {
 			System.out.println("CEP         :" + funcionario.getCep());
 			System.out.println("TELEFONE    :" + funcionario.getTelefone());
 			System.out.println("=============");
+		}
+	}
+
+	private static void clearBuffer(Scanner scanner) {
+		if (scanner.hasNextLine()) {
+			scanner.nextLine();
+		}
+	}
+
+	public void verificarCodigo(int posicao) {
+		int codigo = posicao;
+		for (int i = 0; i < funcionarios.size(); i++) {
+			if (codigo == funcionarios.get(i).getCodigo()) {
+
+			}
 		}
 	}
 

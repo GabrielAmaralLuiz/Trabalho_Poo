@@ -22,7 +22,7 @@ public class FicharioProduto {
 		int menu = 0;
 		do {
 			System.out.println("--==[CADASTRO DE PRODUTOS]==--");
-			System.out.println("Escolha uma opcao: ");
+			System.out.println("Escolha uma opção: ");
 			System.out.println("--==[1 - cadastro]==--");
 			System.out.println("--==[2 - sair]==--");
 			menu = sc.nextInt();
@@ -54,6 +54,7 @@ public class FicharioProduto {
 				System.out.println(": PREÇO                      :");
 				prod.setPreco(sc.nextFloat());
 				produtos.add(prod);
+				System.out.println("Produto cadastrado!");
 			}
 		} while (menu != 2);
 
@@ -80,7 +81,7 @@ public class FicharioProduto {
 		}
 		if (achou) {
 			produtos.remove(ind);
-			System.out.println("produto excluido.");
+			System.out.println("produto excluído.");
 		} else
 			System.out.println("produto não encontrado");
 	}
@@ -92,13 +93,13 @@ public class FicharioProduto {
 		do {
 			System.out.println("--==[ALTERAÇÃO DE PRODUTOS]==--");
 			System.out.println("Escolha uma opcao: ");
-			System.out.println("--==[1 - cadastro]==--");
+			System.out.println("--==[1 - alterar]==--");
 			System.out.println("--==[2 - sair]==--");
 			menu = sc.nextInt();
 			if (menu == 1) {
 				int resp;
 				imprime();
-				System.out.println("Esolha o codigo do produto que deseja Alterar: ");
+				System.out.println("Escolha o codigo do produto que deseja Alterar: ");
 				resp = sc.nextInt();
 				int ind = 0;
 				boolean achou = false;
@@ -113,10 +114,7 @@ public class FicharioProduto {
 
 				if (achou) {
 					prod = produtos.get(ind);
-					sc.nextLine();
-					System.out.println(": CODIGO                     :");
-					prod.setCodigo(sc.nextInt());
-					sc.nextLine();
+					clearBuffer(sc);
 					System.out.println(": NOME                       :");
 					prod.setNome(sc.nextLine());
 					System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :");
@@ -155,7 +153,7 @@ public class FicharioProduto {
 			imprime();
 			int resp;
 			boolean achou = false;
-			System.out.println("Esolha o codigo do produto que deseja consultar: ");
+			System.out.println("Escolha o código do produto que deseja consultar: ");
 			resp = sc.nextInt();
 			int ind = 0;
 			for (int i = 0; i < produtos.size(); i++) {
@@ -172,7 +170,7 @@ public class FicharioProduto {
 				System.out.println("--=====================================--");
 				imprimeConsulata(prod);
 			} else
-				System.out.println("produto invalido ou não exite.");
+				System.out.println("produto inválido ou não exite.");
 		}
 	}
 
@@ -186,7 +184,7 @@ public class FicharioProduto {
 			}
 		}
 		else
-			System.out.println("ArrayList vazio.");
+			System.out.println("Sem produtos cadastrados! cadastre antes de imprimir relatório.");
 	}
 
 	private void imprime() {
@@ -211,7 +209,7 @@ public class FicharioProduto {
 			System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :" + prod.getIdEmpresa());
 			System.out.println(": NUMERO DE REGISTRO         :" + prod.getNumeroRegistro());
 			System.out.println(": INFORMAÇÃO FARMACEUTICA    :" + prod.getInformacaoFarmaceutica());
-			System.out.println(": TELEFONE DO LABORARORIO    :" + prod.getTelefoneFarmaceuticaRespnsavel());
+			System.out.println(": TELEFONE DO LABORATÓRIO    :" + prod.getTelefoneFarmaceuticaRespnsavel());
 			System.out.println(": TELEFONE DO SAG            :" + prod.getTelefoneSag());
 			System.out.println(": IDENTIFICAÇÃO DO LACRE     :" + prod.getIdLacreSeguranca());
 			System.out.println(": TARJA                      :" + prod.getTarja());
@@ -228,7 +226,7 @@ public class FicharioProduto {
 		System.out.println(": INDENTIFICAÇÃO DA EMPRESA  :" + prod.getIdEmpresa());
 		System.out.println(": NUMERO DE REGISTRO         :" + prod.getNumeroRegistro());
 		System.out.println(": INFORMAÇÃO FARMACEUTICA    :" + prod.getInformacaoFarmaceutica());
-		System.out.println(": TELEFONE DO LABORARORIO    :" + prod.getTelefoneFarmaceuticaRespnsavel());
+		System.out.println(": TELEFONE DO LABORATÓRIO    :" + prod.getTelefoneFarmaceuticaRespnsavel());
 		System.out.println(": TELEFONE DO SAG            :" + prod.getTelefoneSag());
 		System.out.println(": IDENTIFICAÇÃO DO LACRE     :" + prod.getIdLacreSeguranca());
 		System.out.println(": TARJA                      :" + prod.getTarja());
@@ -237,4 +235,9 @@ public class FicharioProduto {
 		System.out.println(": PREÇO                      :" + prod.getPreco());
 		System.out.println(":============================:");
 	}
+	private static void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+    }
 }
